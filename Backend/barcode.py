@@ -6,7 +6,7 @@ from pyzbar.pyzbar import decode
 #if no barcode is present, or it cannot be read, barcode will return none
 #an example is at the bottom of the file
 
- 
+
 def BarcodeReader(image):
     
     # read the image in numpy array using cv2
@@ -32,6 +32,6 @@ def BarcodeReader(image):
 
 if __name__ == "__main__":#example of how it works
   # Take the image from user
-    image="haribow_blury.jpg" #-need a file name for it to work
+    image="haribow_far_2.jpg" #-need a file name for it to work
     data = BarcodeReader(image)
     print(data)
