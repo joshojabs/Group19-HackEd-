@@ -1,8 +1,12 @@
 import cv2
 from pyzbar.pyzbar import decode
 
+#--Guide--
+#pass a file path into the function
+#if no barcode is present, or it cannot be read, barcode will return none
+#an example is at the bottom of the file
 
-# Make one method to decode the barcode 
+ 
 def BarcodeReader(image):
     
     # read the image in numpy array using cv2
@@ -23,12 +27,11 @@ def BarcodeReader(image):
             if barcode.data!="":
               
             # Print the barcode data
-                return(barcode.data)
-                
-                
+                return(barcode.data)                
 
-if __name__ == "__main__":
+
+if __name__ == "__main__":#example of how it works
   # Take the image from user
-    image="crisps001.jpg" #-need a file name for it to work
+    image="haribow_blury.jpg" #-need a file name for it to work
     data = BarcodeReader(image)
-    print(str(data))
+    print(data)
