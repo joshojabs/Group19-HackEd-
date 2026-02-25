@@ -14,15 +14,28 @@ Through our research and communication within our team, we noticed that many peo
 
 We also found with our research that because of the lack of resources, people feel overwhelmed, isolated and cannot continue with daily activites.
 
-## Project Demonstration 🔗
-
 You can find a live version of the project here:
+
+## Installation 🏗️
+
+```
+#Clone the repositry
+git clone https://github.com/joshojabs/Group19-HackEd-
+
+#Install Dependancies
+npm i 
+
+#Build and run application
+npm run dev
+
+```
+## Project Demonstration 🔗
 
 [Live Demonstration](Insert Link)
 
 ## Built-In 🛠️
 
-Python - Backend
+Python and JavaScript - Backend
 
 HTML - Frontend
 
