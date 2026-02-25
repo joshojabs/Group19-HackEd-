@@ -14,7 +14,6 @@ Through our research and communication within our team, we noticed that many peo
 
 We also found with our research that because of the lack of resources, people feel overwhelmed, isolated and cannot continue with daily activites.
 
-You can find a live version of the project here:
 
 ## Installation 🏗️
 
@@ -30,6 +29,8 @@ npm run dev
 
 ```
 ## Project Demonstration 🔗
+
+You can find a live version of the project here:
 
 [Live Demonstration](Insert Link)
 
