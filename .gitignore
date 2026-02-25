@@ -1,1 +1,3 @@
 .venv/
+get-pip.py
+.gitignore
