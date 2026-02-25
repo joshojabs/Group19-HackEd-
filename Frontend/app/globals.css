@@ -1,0 +1,117 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Gluca brand palette */
+  --c-ink: #0B2027;
+  --c-green-900: #1A5142;
+  --c-green-800: #007051;
+  --c-green-600: #00A375;
+  --c-bg-soft: #F0F9D3;
+  --c-bg-cream: #FFFDF4;
+  --c-low: #DF6767;
+  --c-mid: #FED359;
+  --c-good: #76C893;
+  --c-high: #8E3535;
+  --c-brown: #8D7338;
+
+  /* Design tokens mapped to Gluca palette */
+  --background: #FFFDF4;
+  --foreground: #0B2027;
+  --card: #ffffff;
+  --card-foreground: #0B2027;
+  --popover: #ffffff;
+  --popover-foreground: #0B2027;
+  --primary: #00A375;
+  --primary-foreground: #ffffff;
+  --secondary: #F0F9D3;
+  --secondary-foreground: #0B2027;
+  --muted: #F0F9D3;
+  --muted-foreground: #1A5142;
+  --accent: #007051;
+  --accent-foreground: #ffffff;
+  --destructive: #DF6767;
+  --destructive-foreground: #ffffff;
+  --border: #d4e5c9;
+  --input: #d4e5c9;
+  --ring: #00A375;
+  --chart-1: #007051;
+  --chart-2: #00A375;
+  --chart-3: #76C893;
+  --chart-4: #FED359;
+  --chart-5: #DF6767;
+  --radius: 1rem;
+  --sidebar: #1A5142;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #00A375;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #007051;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #007051;
+  --sidebar-ring: #00A375;
+}
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Custom Gluca tokens */
+  --color-gluca-ink: var(--c-ink);
+  --color-gluca-green-900: var(--c-green-900);
+  --color-gluca-green-800: var(--c-green-800);
+  --color-gluca-green-600: var(--c-green-600);
+  --color-gluca-bg-soft: var(--c-bg-soft);
+  --color-gluca-bg-cream: var(--c-bg-cream);
+  --color-gluca-low: var(--c-low);
+  --color-gluca-mid: var(--c-mid);
+  --color-gluca-good: var(--c-good);
+  --color-gluca-high: var(--c-high);
+  --color-gluca-brown: var(--c-brown);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
