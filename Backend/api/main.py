@@ -1,13 +1,16 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import requests
+from dotenv import load_dotenv
 import dotenv
 import os
 
 app = Flask(__name__)
 CORS(app)
 
-API_KEY = "4c64c178ac7447d895275a9eb497fc2a"  
+
+load_dotenv()
+app.config["Secret_Key"] = os.getenv("Secret_Key")
 
 @app.route("/")
 def home():
