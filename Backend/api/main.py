@@ -2,89 +2,107 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import requests
 from dotenv import load_dotenv
-import dotenv
 import os
 
 app = Flask(__name__)
 CORS(app)
 
-
+# Load environment variables
 load_dotenv()
-app.config["Secret_Key"] = os.getenv("Secret_Key")
+
+API_KEY = os.getenv("SPOONACULAR_API_KEY")
+
+if not API_KEY:
+    raise ValueError("SPOONACULAR_API_KEY not found in .env file")
+
+BASE_URL = "https://api.spoonacular.com/recipes"
+
 
 @app.route("/")
 def home():
     return "Flask is running! Use /spoon/<query>?type=breakfast&number=5 to search recipes."
 
+
+# 🔍 Search recipes (with nutrition included)
 @app.route("/spoon/<string:query>", methods=["GET"])
 def get_spoon(query):
-    meal_type = request.args.get("type")           
-    number = int(request.args.get("number", 5))   
+    meal_type = request.args.get("type")
+    number = int(request.args.get("number", 5))
 
-    url = "https://api.spoonacular.com/recipes/complexSearch"
+    url = f"{BASE_URL}/complexSearch"
+
     params = {
         "query": query,
         "number": number,
+        "addRecipeNutrition": "true",  # Important: avoids multiple API calls
         "apiKey": API_KEY
     }
+
     if meal_type:
         params["type"] = meal_type
 
-    response = requests.get(url, params=params)
-
-    if response.status_code == 200:
+    try:
+        response = requests.get(url, params=params)
+        response.raise_for_status()
         return jsonify(response.json())
-    else:
-        return jsonify({"error": "Request failed", "details": response.text}), response.status_code
+
+    except requests.exceptions.RequestException as e:
+        return jsonify({
+            "error": "Failed to fetch recipes",
+            "details": str(e)
+        }), 500
 
 
+# 📊 Get full recipe information by ID
 @app.route("/recipe/<int:recipe_id>", methods=["GET"])
 def get_recipe_info(recipe_id):
-    url = f"https://api.spoonacular.com/recipes/{recipe_id}/information"
+    url = f"{BASE_URL}/{recipe_id}/information"
+
     params = {
         "includeNutrition": "true",
         "apiKey": API_KEY
     }
-    response = requests.get(url, params=params)
 
-    if response.status_code == 200:
+    try:
+        response = requests.get(url, params=params)
+        response.raise_for_status()
         return jsonify(response.json())
-    else:
-        return jsonify({"error": "Request failed", "details": response.text}), response.status_code
+
+    except requests.exceptions.RequestException as e:
+        return jsonify({
+            "error": "Failed to fetch recipe information",
+            "details": str(e)
+        }), 500
 
 
+# 🍳 Search recipes by name (clean + optimized)
 @app.route("/byname/<string:query>", methods=["GET"])
 def recipe_by_name(query):
-    search_url = "https://api.spoonacular.com/recipes/complexSearch"
-    search_params = {
+    url = f"{BASE_URL}/complexSearch"
+
+    params = {
         "query": query,
         "number": 5,
+        "addRecipeNutrition": "true",
         "apiKey": API_KEY
     }
-    response = requests.get(search_url, params=search_params)
 
-    if response.status_code != 200:
-        return jsonify({"error": "Search failed"}), response.status_code
+    try:
+        response = requests.get(url, params=params)
+        response.raise_for_status()
 
-    search_data = response.json()
-    if not search_data.get("results"):
-        return jsonify({"error": "No recipe found for that name"}), 404
+        data = response.json()
 
-    recipes_full_info = []
-    for recipe in search_data["results"]:
-        recipe_id = recipe["id"]
-        info_url = f"https://api.spoonacular.com/recipes/{recipe_id}/information"
-        info_params = {
-            "includeNutrition": "true",
-            "apiKey": API_KEY
-        }
-        info_response = requests.get(info_url, params=info_params)
-        if info_response.status_code == 200:
-            recipes_full_info.append(info_response.json())
-        else:
-            print(f"Failed to fetch info for recipe ID {recipe_id}")
+        if not data.get("results"):
+            return jsonify({"error": "No recipe found for that name"}), 404
 
-    return jsonify(recipes_full_info)  
+        return jsonify(data["results"])
+
+    except requests.exceptions.RequestException as e:
+        return jsonify({
+            "error": "Search failed",
+            "details": str(e)
+        }), 500
 
 
 if __name__ == "__main__":
