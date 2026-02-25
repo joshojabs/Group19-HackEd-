@@ -120,7 +120,7 @@ export function HomeContent() {
                 <Link
                   key={action.href}
                   href={action.href}
-                  className="flex items-center justify-between bg-[#007051] text-white rounded-2xl px-5 py-4 hover:bg-[#005c42] transition-colors"
+                  className="flex items-center justify-between bg-[#00A375] text-white rounded-2xl px-5 py-4"
                 >
                   <span className="font-medium text-[15px]">
                     {action.label}
