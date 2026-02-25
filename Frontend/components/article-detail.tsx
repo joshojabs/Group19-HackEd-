@@ -63,12 +63,20 @@ export function ArticleDetail({ slug }: { slug: string }) {
             {article.subheading}
           </p>
           <div>
-            <h2 className="text-lg font-semibold text-foreground mb-3">
-              Heading
-            </h2>
-            <p className="text-foreground leading-relaxed">
-              {article.content}
-            </p>
+            {/* If the article has structured sections render them, otherwise fallback to single content string */}
+            {((article as any).sections as { heading: string; content: string }[] | undefined)?.length ? (
+              ((article as any).sections as { heading: string; content: string }[]).map((s, i) => (
+                <section key={i} className="mb-6">
+                  <h2 className="text-lg font-semibold text-foreground mb-3">{s.heading}</h2>
+                  <p className="text-foreground leading-relaxed whitespace-pre-line">{s.content}</p>
+                </section>
+              ))
+            ) : (
+              <>
+                <h2 className="text-lg font-semibold text-foreground mb-3">Heading</h2>
+                <p className="text-foreground leading-relaxed">{article.content}</p>
+              </>
+            )}
           </div>
         </article>
 

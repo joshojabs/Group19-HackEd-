@@ -6,16 +6,19 @@ import {
   type Recipe,
   type Recommendation,
 } from "./mockData"
+import { healthyBalancedDiabetesDiet } from "./articles/healthy-balanced-diabetes-diet"
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export async function fetchArticles(): Promise<Article[]> {
   await delay(400)
-  return articles
+  // Include local, standalone articles alongside mockData
+  return [...articles, healthyBalancedDiabetesDiet as unknown as Article]
 }
 
 export async function fetchArticle(slug: string): Promise<Article | undefined> {
   await delay(300)
+  if (healthyBalancedDiabetesDiet.slug === slug) return healthyBalancedDiabetesDiet as unknown as Article
   return articles.find((a) => a.slug === slug)
 }
 
