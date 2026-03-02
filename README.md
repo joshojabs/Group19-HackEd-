@@ -32,7 +32,7 @@ npm run dev
 
 You can find a live version of the project here:
 
-[Live Demonstration](Insert Link)
+[Live Demonstration](https://drive.google.com/file/d/1MvwJQm0AFMYfpWCOc32z1Q5gzixo87lr/view?usp=sharing)
 
 ## Built-In 🛠️
 
@@ -41,5 +41,11 @@ Python and JavaScript - Backend
 HTML - Frontend
 
 
+## Continuation 🛑
 
+HackEd ended as of the 25th of Febuary 2026. THis means this project will no longer be worked on after this date unless continued by the Team. Team 19 (Gluca) placed second out of 9 teams chosen by judges that were involved in the presentation.
+
+All Assets including branding, presentation and notes can be found here:
+
+[Gluca Branding Assets](https://drive.google.com/drive/folders/1TRYsVPtA8PwnKe4DVIF3jfCW6li73Uil?usp=sharing)
 
